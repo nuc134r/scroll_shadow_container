@@ -104,7 +104,8 @@ class _ScrollShadowContainerState extends State<ScrollShadowContainer> {
   bool _needShadowOnTop = false;
   bool _needShadowOnBottom = false;
 
-  BoxDecoration get _shadowDecoration => widget.boxShadow ?? MaterialShadow.asBoxDecoration(elevation: widget.elevation);
+  BoxDecoration get _shadowDecoration =>
+      widget.boxShadow != null ? BoxDecoration(boxShadow: [widget.boxShadow]) : MaterialShadow.asBoxDecoration(elevation: widget.elevation);
   BoxDecoration get _emptyDecoration => BoxDecoration();
 
   void _updateShadowsVisibility() {
