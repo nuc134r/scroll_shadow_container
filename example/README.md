@@ -1,16 +1,25 @@
-# scroll_shadow_container_example
+You can specify shadow elevation via `elevation` property which does not very accurately mocks `Material`'s elevation.
 
-A new Flutter project.
+```dart
+ScrollShadowContainer(
+  elevation: MaterialElevation.the2dp,
+  child: ListView(
+    children: List.generate(10, (i) {
+      return ListTile(
+        leading: CircleAvatar(child: Text((i + 1).toString())),
+        title: Text('List item title'),
+        subtitle: Text('List item subtitle'),
+      );
+    }),
+  ),
+)
 
-## Getting Started
+```
+Or you can use `ScrollShadowContainer.custom` constructor to supply your own `BoxShadow`:
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+```dart
+ScrollShadowContainer.custom(
+  boxShadow: BoxShadow(blurRadius: 5, spreadRadius: 5),
+  child: /* ... */
+)
+```
