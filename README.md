@@ -1,5 +1,7 @@
 # scroll_shadow_container
 
+[![pub package](https://img.shields.io/pub/v/scroll_shadow_container.svg)](https://pub.dartlang.org/packages/scroll_shadow_container)
+
 A widget that wraps scrollable container and draws neat little shadows until top or bottom of container is not reached.
 
 ![shadows](https://user-images.githubusercontent.com/13202642/57546017-8cf06780-7364-11e9-8dc5-78a55c8d24f7.gif)
