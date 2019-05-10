@@ -1,7 +1,7 @@
 name: scroll_shadow_container
 description: Neat little shadows on top and bottom of a scrollable container
-version: 1.0.0
-author: nuc134r
+version: 1.0.1
+author: nuc134r <chelman.soft@gmail.com>
 homepage: https://github.com/nuc134r/scroll_shadow_container
 
 environment:

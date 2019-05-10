@@ -59,7 +59,7 @@ class MaterialShadow {
 /// bottom of container is not reached.
 ///
 /// You can specify shadow elevation via [elevation] property which is
-/// not very accurately mocks [Material]'s elevation.
+/// not very accurately mocks [Material]'s elevation. Default value is [MaterialElevation.the2dp].
 ///
 /// Or you can use [ScrollShadowContainer.custom] constructor to supply
 /// your own [BoxShadow].
