@@ -23,3 +23,13 @@ ScrollShadowContainer.custom(
   child: /* ... */
 )
 ```
+
+You can also obtain `BoxDecoration`s used by this package using following code.
+
+```dart
+Container(
+  decoration: MaterialShadow.asBoxDecoration(elevation: MaterialElevation.the4dp),
+)
+```
+
+I only tried to replicate Material's shadows so they're not actually identical but close. Only 1 to 8 elevation values available.
