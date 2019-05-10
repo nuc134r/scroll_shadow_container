@@ -55,7 +55,7 @@ class MaterialShadow {
   }
 }
 
-/// Wraps scrollable container and draws little neat shadows until top or
+/// Wraps scrollable container and draws neat little shadows until top or
 /// bottom of container is not reached.
 ///
 /// You can specify shadow elevation via [elevation] property which is
