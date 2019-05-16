@@ -58,8 +58,8 @@ class MaterialShadow {
 /// Wraps scrollable container and draws neat little shadows until top or
 /// bottom of container is not reached.
 ///
-/// You can specify shadow elevation via [elevation] property which is
-/// not very accurately mocks [Material]'s elevation. Default value is [MaterialElevation.the2dp].
+/// You can specify shadow elevation via [elevation] property which does
+/// not very accurately mock [Material]'s elevation. Default value is [MaterialElevation.the2dp].
 ///
 /// Or you can use [ScrollShadowContainer.custom] constructor to supply
 /// your own [BoxShadow].
@@ -138,6 +138,7 @@ class _ScrollShadowContainerState extends State<ScrollShadowContainer> {
     if (_needShadowOnTop != top || _needShadowOnBottom != bottom) {
       _needShadowOnTop = top;
       _needShadowOnBottom = bottom;
+      // Calling setState only rebuilds this widget, not child unless it was changed
       setState(() {});
     }
   }
@@ -145,6 +146,8 @@ class _ScrollShadowContainerState extends State<ScrollShadowContainer> {
   @override
   void initState() {
     super.initState();
+    // After widget is built for the first time and scroll controller
+    // has a client attached we can update shadows visibility
     WidgetsBinding.instance.addPostFrameCallback((_) => _updateShadowsVisibility());
   }
 
