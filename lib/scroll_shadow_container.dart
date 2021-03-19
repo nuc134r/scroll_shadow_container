@@ -20,8 +20,8 @@ enum MaterialElevation {
 ///
 /// Values from 1 to 8 were calculated through trials and side by side comparison.
 class MaterialShadow {
-  static BoxDecoration asBoxDecoration({MaterialElevation elevation}) {
-    BoxShadow shadow;
+  static BoxDecoration asBoxDecoration({MaterialElevation? elevation}) {
+    BoxShadow? shadow;
 
     switch (elevation) {
       case MaterialElevation.the1dp:
@@ -51,7 +51,7 @@ class MaterialShadow {
       default:
     }
 
-    return BoxDecoration(boxShadow: [shadow]);
+    return BoxDecoration(boxShadow: [shadow!]);
   }
 }
 
@@ -81,52 +81,52 @@ class MaterialShadow {
 /// ```
 class ScrollShadowContainer extends StatefulWidget {
   const ScrollShadowContainer({
-    @required this.child,
+    required this.child,
     this.elevation = MaterialElevation.the2dp,
   }) : boxShadow = null;
 
   const ScrollShadowContainer.custom({
-    @required this.child,
-    @required this.boxShadow,
+    required this.child,
+    required this.boxShadow,
   }) : elevation = null;
 
   final Widget child;
-  final MaterialElevation elevation;
-  final BoxShadow boxShadow;
+  final MaterialElevation? elevation;
+  final BoxShadow? boxShadow;
 
   @override
   _ScrollShadowContainerState createState() => _ScrollShadowContainerState();
 }
 
 class _ScrollShadowContainerState extends State<ScrollShadowContainer> {
-  ScrollController _scrollController;
+  ScrollController? _scrollController;
 
   bool _needShadowOnTop = false;
   bool _needShadowOnBottom = false;
 
   BoxDecoration get _shadowDecoration =>
-      widget.boxShadow != null ? BoxDecoration(boxShadow: [widget.boxShadow]) : MaterialShadow.asBoxDecoration(elevation: widget.elevation);
+      widget.boxShadow != null ? BoxDecoration(boxShadow: [widget.boxShadow!]) : MaterialShadow.asBoxDecoration(elevation: widget.elevation);
   BoxDecoration get _emptyDecoration => BoxDecoration();
 
   void _updateShadowsVisibility() {
     bool top;
     bool bottom;
 
-    if (!_scrollController.hasClients) {
-      if (_scrollController.initialScrollOffset > 0) {
+    if (!_scrollController!.hasClients) {
+      if (_scrollController!.initialScrollOffset > 0) {
         top = true;
         bottom = true;
       } else {
         top = false;
         bottom = true;
       }
-    } else if (_scrollController.position.atEdge) {
-      if (_scrollController.position.pixels == _scrollController.position.minScrollExtent) {
+    } else if (_scrollController!.position.atEdge) {
+      if (_scrollController!.position.pixels == _scrollController!.position.minScrollExtent) {
         top = false;
       } else {
         top = true;
       }
-      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+      if (_scrollController!.position.pixels == _scrollController!.position.maxScrollExtent) {
         bottom = false;
       } else {
         bottom = true;
@@ -148,14 +148,14 @@ class _ScrollShadowContainerState extends State<ScrollShadowContainer> {
     super.initState();
     // After widget is built for the first time and scroll controller
     // has a client attached we can update shadows visibility
-    WidgetsBinding.instance.addPostFrameCallback((_) => _updateShadowsVisibility());
+    WidgetsBinding.instance!.addPostFrameCallback((_) => _updateShadowsVisibility());
   }
 
   @override
   Widget build(BuildContext context) {
     if (_scrollController != PrimaryScrollController.of(context)) {
       _scrollController = PrimaryScrollController.of(context);
-      _scrollController.addListener(_updateShadowsVisibility);
+      _scrollController!.addListener(_updateShadowsVisibility);
     }
 
     return ClipRect(
@@ -189,7 +189,7 @@ class _ScrollShadowContainerState extends State<ScrollShadowContainer> {
 
   @override
   void dispose() {
-    _scrollController.removeListener(_updateShadowsVisibility);
+    _scrollController!.removeListener(_updateShadowsVisibility);
     super.dispose();
   }
 }
