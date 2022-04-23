@@ -24,36 +24,28 @@ class MaterialShadow {
 
     switch (elevation) {
       case MaterialElevation.the1dp:
-        shadow =
-            BoxShadow(color: Colors.black12, spreadRadius: 1, blurRadius: 0);
+        shadow = BoxShadow(color: Colors.black12, spreadRadius: 1, blurRadius: 0);
         break;
       case MaterialElevation.the2dp:
-        shadow =
-            BoxShadow(color: Colors.black26, spreadRadius: 1, blurRadius: 1);
+        shadow = BoxShadow(color: Colors.black26, spreadRadius: 1, blurRadius: 1);
         break;
       case MaterialElevation.the3dp:
-        shadow =
-            BoxShadow(color: Colors.black26, spreadRadius: 2, blurRadius: 2);
+        shadow = BoxShadow(color: Colors.black26, spreadRadius: 2, blurRadius: 2);
         break;
       case MaterialElevation.the4dp:
-        shadow =
-            BoxShadow(color: Colors.black26, spreadRadius: 2, blurRadius: 5);
+        shadow = BoxShadow(color: Colors.black26, spreadRadius: 2, blurRadius: 5);
         break;
       case MaterialElevation.the5dp:
-        shadow =
-            BoxShadow(color: Colors.black26, spreadRadius: 3, blurRadius: 5);
+        shadow = BoxShadow(color: Colors.black26, spreadRadius: 3, blurRadius: 5);
         break;
       case MaterialElevation.the6dp:
-        shadow =
-            BoxShadow(color: Colors.black26, spreadRadius: 4, blurRadius: 6);
+        shadow = BoxShadow(color: Colors.black26, spreadRadius: 4, blurRadius: 6);
         break;
       case MaterialElevation.the7dp:
-        shadow =
-            BoxShadow(color: Colors.black26, spreadRadius: 4, blurRadius: 7);
+        shadow = BoxShadow(color: Colors.black26, spreadRadius: 4, blurRadius: 7);
         break;
       case MaterialElevation.the8dp:
-        shadow =
-            BoxShadow(color: Colors.black26, spreadRadius: 5, blurRadius: 8);
+        shadow = BoxShadow(color: Colors.black26, spreadRadius: 5, blurRadius: 8);
         break;
       default:
         throw Exception('Not supported elevation value: $elevation');
@@ -107,7 +99,7 @@ class ScrollShadowContainer extends StatefulWidget {
 }
 
 class _ScrollShadowContainerState extends State<ScrollShadowContainer> {
-  late ScrollController _scrollController;
+  ScrollController? _scrollController;
 
   bool _needShadowOnTop = false;
   bool _needShadowOnBottom = false;
@@ -121,23 +113,21 @@ class _ScrollShadowContainerState extends State<ScrollShadowContainer> {
     bool top;
     bool bottom;
 
-    if (!_scrollController.hasClients) {
-      if (_scrollController.initialScrollOffset > 0) {
+    if (!_scrollController!.hasClients) {
+      if (_scrollController!.initialScrollOffset > 0) {
         top = true;
         bottom = true;
       } else {
         top = false;
         bottom = true;
       }
-    } else if (_scrollController.position.atEdge) {
-      if (_scrollController.position.pixels ==
-          _scrollController.position.minScrollExtent) {
+    } else if (_scrollController!.position.atEdge) {
+      if (_scrollController!.position.pixels == _scrollController!.position.minScrollExtent) {
         top = false;
       } else {
         top = true;
       }
-      if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
+      if (_scrollController!.position.pixels == _scrollController!.position.maxScrollExtent) {
         bottom = false;
       } else {
         bottom = true;
@@ -159,15 +149,14 @@ class _ScrollShadowContainerState extends State<ScrollShadowContainer> {
     super.initState();
     // After widget is built for the first time and scroll controller
     // has a client attached we can update shadows visibility
-    WidgetsBinding.instance!
-        .addPostFrameCallback((_) => _updateShadowsVisibility());
+    WidgetsBinding.instance!.addPostFrameCallback((_) => _updateShadowsVisibility());
   }
 
   @override
   Widget build(BuildContext context) {
     if (_scrollController != PrimaryScrollController.of(context)) {
       _scrollController = PrimaryScrollController.of(context)!;
-      _scrollController.addListener(_updateShadowsVisibility);
+      _scrollController!.addListener(_updateShadowsVisibility);
     }
 
     return ClipRect(
@@ -182,8 +171,7 @@ class _ScrollShadowContainerState extends State<ScrollShadowContainer> {
             child: Container(
               height: 0,
               width: MediaQuery.of(context).size.width,
-              decoration:
-                  _needShadowOnTop ? _shadowDecoration : _emptyDecoration,
+              decoration: _needShadowOnTop ? _shadowDecoration : _emptyDecoration,
             ),
           ),
           // Shadow on bottom
@@ -192,8 +180,7 @@ class _ScrollShadowContainerState extends State<ScrollShadowContainer> {
             child: Container(
               height: 0,
               width: MediaQuery.of(context).size.width,
-              decoration:
-                  _needShadowOnBottom ? _shadowDecoration : _emptyDecoration,
+              decoration: _needShadowOnBottom ? _shadowDecoration : _emptyDecoration,
             ),
           ),
         ],
@@ -203,7 +190,7 @@ class _ScrollShadowContainerState extends State<ScrollShadowContainer> {
 
   @override
   void dispose() {
-    _scrollController.removeListener(_updateShadowsVisibility);
+    _scrollController!.removeListener(_updateShadowsVisibility);
     super.dispose();
   }
 }
