@@ -1,6 +1,6 @@
 name: scroll_shadow_container
 description: Dynamically appearing shadows on top or bottom of a scrollable area when end is reached 
-version: 2.0.0
+version: 2.0.1
 repository: https://github.com/nuc134r/scroll_shadow_container
 
 environment:
