@@ -1,11 +1,10 @@
 name: scroll_shadow_container
-description: Neat little shadows on top and bottom of a scrollable container
-version: 1.0.1
-author: nuc134r <chelman.soft@gmail.com>
-homepage: https://github.com/nuc134r/scroll_shadow_container
+description: Dynamically appearing shadows on top or bottom of a scrollable area when end is reached 
+version: 2.0.0
+repository: https://github.com/nuc134r/scroll_shadow_container
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.16.1 <3.0.0"
 
 dependencies:
   flutter:
