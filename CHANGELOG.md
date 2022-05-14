@@ -1,3 +1,7 @@
+## [2.1.0] - 15.05.2022
+
+* Improved support of BouncingScrollPhysics (iOS default)
+
 ## [2.0.1] - 24.04.2022
 
 * Null safety support

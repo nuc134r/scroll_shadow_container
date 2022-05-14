@@ -113,6 +113,12 @@ class _ScrollShadowContainerState extends State<ScrollShadowContainer> {
     bool top;
     bool bottom;
 
+    //var pos = _scrollController!.position.pixels.toString().padRight(5).substring(0, 5);
+    //var atEdge = _scrollController!.position.atEdge.toString();
+    //var min = _scrollController!.position.minScrollExtent.toString();
+    //var max = _scrollController!.position.maxScrollExtent.toString();
+    //print("pos: " + pos + " atEdge: " + atEdge + " min: " + min + " max: " + max);
+
     if (!_scrollController!.hasClients) {
       if (_scrollController!.initialScrollOffset > 0) {
         top = true;
@@ -133,8 +139,18 @@ class _ScrollShadowContainerState extends State<ScrollShadowContainer> {
         bottom = true;
       }
     } else {
-      top = bottom = true;
+      if (_scrollController!.position.pixels < _scrollController!.position.minScrollExtent) {
+        top = false;
+        bottom = true;
+      } else if (_scrollController!.position.pixels > _scrollController!.position.maxScrollExtent) {
+        top = true;
+        bottom = false;
+      } else {
+        top = bottom = true;
+      }
     }
+
+    print("top: " + top.toString() + " bottom: " + bottom.toString());
 
     if (_needShadowOnTop != top || _needShadowOnBottom != bottom) {
       _needShadowOnTop = top;
