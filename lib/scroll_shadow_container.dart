@@ -24,28 +24,36 @@ class MaterialShadow {
 
     switch (elevation) {
       case MaterialElevation.the1dp:
-        shadow = BoxShadow(color: Colors.black12, spreadRadius: 1, blurRadius: 0);
+        shadow =
+            BoxShadow(color: Colors.black12, spreadRadius: 1, blurRadius: 0);
         break;
       case MaterialElevation.the2dp:
-        shadow = BoxShadow(color: Colors.black26, spreadRadius: 1, blurRadius: 1);
+        shadow =
+            BoxShadow(color: Colors.black26, spreadRadius: 1, blurRadius: 1);
         break;
       case MaterialElevation.the3dp:
-        shadow = BoxShadow(color: Colors.black26, spreadRadius: 2, blurRadius: 2);
+        shadow =
+            BoxShadow(color: Colors.black26, spreadRadius: 2, blurRadius: 2);
         break;
       case MaterialElevation.the4dp:
-        shadow = BoxShadow(color: Colors.black26, spreadRadius: 2, blurRadius: 5);
+        shadow =
+            BoxShadow(color: Colors.black26, spreadRadius: 2, blurRadius: 5);
         break;
       case MaterialElevation.the5dp:
-        shadow = BoxShadow(color: Colors.black26, spreadRadius: 3, blurRadius: 5);
+        shadow =
+            BoxShadow(color: Colors.black26, spreadRadius: 3, blurRadius: 5);
         break;
       case MaterialElevation.the6dp:
-        shadow = BoxShadow(color: Colors.black26, spreadRadius: 4, blurRadius: 6);
+        shadow =
+            BoxShadow(color: Colors.black26, spreadRadius: 4, blurRadius: 6);
         break;
       case MaterialElevation.the7dp:
-        shadow = BoxShadow(color: Colors.black26, spreadRadius: 4, blurRadius: 7);
+        shadow =
+            BoxShadow(color: Colors.black26, spreadRadius: 4, blurRadius: 7);
         break;
       case MaterialElevation.the8dp:
-        shadow = BoxShadow(color: Colors.black26, spreadRadius: 5, blurRadius: 8);
+        shadow =
+            BoxShadow(color: Colors.black26, spreadRadius: 5, blurRadius: 8);
         break;
       default:
         throw Exception('Not supported elevation value: $elevation');
@@ -85,6 +93,7 @@ class ScrollShadowContainer extends StatefulWidget {
     this.elevation = MaterialElevation.the2dp,
   }) : boxShadow = null;
 
+  /// Supply your own [BoxShadow] to display on top and bottom
   const ScrollShadowContainer.custom({
     required this.child,
     required this.boxShadow,
@@ -128,21 +137,25 @@ class _ScrollShadowContainerState extends State<ScrollShadowContainer> {
         bottom = true;
       }
     } else if (_scrollController!.position.atEdge) {
-      if (_scrollController!.position.pixels == _scrollController!.position.minScrollExtent) {
+      if (_scrollController!.position.pixels ==
+          _scrollController!.position.minScrollExtent) {
         top = false;
       } else {
         top = true;
       }
-      if (_scrollController!.position.pixels == _scrollController!.position.maxScrollExtent) {
+      if (_scrollController!.position.pixels ==
+          _scrollController!.position.maxScrollExtent) {
         bottom = false;
       } else {
         bottom = true;
       }
     } else {
-      if (_scrollController!.position.pixels < _scrollController!.position.minScrollExtent) {
+      if (_scrollController!.position.pixels <
+          _scrollController!.position.minScrollExtent) {
         top = false;
         bottom = true;
-      } else if (_scrollController!.position.pixels > _scrollController!.position.maxScrollExtent) {
+      } else if (_scrollController!.position.pixels >
+          _scrollController!.position.maxScrollExtent) {
         top = true;
         bottom = false;
       } else {
@@ -150,7 +163,7 @@ class _ScrollShadowContainerState extends State<ScrollShadowContainer> {
       }
     }
 
-    print("top: " + top.toString() + " bottom: " + bottom.toString());
+    //print("top: " + top.toString() + " bottom: " + bottom.toString());
 
     if (_needShadowOnTop != top || _needShadowOnBottom != bottom) {
       _needShadowOnTop = top;
@@ -165,7 +178,8 @@ class _ScrollShadowContainerState extends State<ScrollShadowContainer> {
     super.initState();
     // After widget is built for the first time and scroll controller
     // has a client attached we can update shadows visibility
-    WidgetsBinding.instance!.addPostFrameCallback((_) => _updateShadowsVisibility());
+    WidgetsBinding.instance
+        ?.addPostFrameCallback((_) => _updateShadowsVisibility());
   }
 
   @override
@@ -187,7 +201,8 @@ class _ScrollShadowContainerState extends State<ScrollShadowContainer> {
             child: Container(
               height: 0,
               width: MediaQuery.of(context).size.width,
-              decoration: _needShadowOnTop ? _shadowDecoration : _emptyDecoration,
+              decoration:
+                  _needShadowOnTop ? _shadowDecoration : _emptyDecoration,
             ),
           ),
           // Shadow on bottom
@@ -196,7 +211,8 @@ class _ScrollShadowContainerState extends State<ScrollShadowContainer> {
             child: Container(
               height: 0,
               width: MediaQuery.of(context).size.width,
-              decoration: _needShadowOnBottom ? _shadowDecoration : _emptyDecoration,
+              decoration:
+                  _needShadowOnBottom ? _shadowDecoration : _emptyDecoration,
             ),
           ),
         ],
