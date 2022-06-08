@@ -1,4 +1,8 @@
-## [2.1.0] - 15.05.2022
+## [2.1.1] - 08.06.2022
+
+* Removed annoying debug print (@martcor)
+
+ ## [2.1.0] - 15.05.2022
 
 * Improved support of BouncingScrollPhysics (iOS default)
 
