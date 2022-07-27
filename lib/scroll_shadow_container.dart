@@ -179,7 +179,7 @@ class _ScrollShadowContainerState extends State<ScrollShadowContainer> {
     // After widget is built for the first time and scroll controller
     // has a client attached we can update shadows visibility
     WidgetsBinding.instance
-        .addPostFrameCallback((_) => _updateShadowsVisibility());
+        ?.addPostFrameCallback((_) => _updateShadowsVisibility());
   }
 
   @override
