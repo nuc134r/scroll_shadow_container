@@ -176,14 +176,15 @@ class _ScrollShadowContainerState extends State<ScrollShadowContainer> {
   @override
   void initState() {
     super.initState();
-	
-	/// This allows a value of type T or T? to be treated as a value of type T?.
-	/// Allows to get rid of pub.dev "The receiver can't be null, so the null-aware operator '?.' is unnecessary." warning.
-	T? _ambiguate<T>(T? value) => value;
-	
+
+    /// This allows a value of type T or T? to be treated as a value of type T?.
+    /// Allows to get rid of pub.dev "The receiver can't be null, so the null-aware operator '?.' is unnecessary." warning.
+    T? _ambiguate<T>(T? value) => value;
+
     // After widget is built for the first time and scroll controller
     // has a client attached we can update shadows visibility
-    _ambiguate(WidgetsBinding.instance)?.addPostFrameCallback((_) => _updateShadowsVisibility());
+    _ambiguate(WidgetsBinding.instance)
+        ?.addPostFrameCallback((_) => _updateShadowsVisibility());
   }
 
   @override
